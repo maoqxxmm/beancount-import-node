@@ -38,7 +38,11 @@ export class AlipayLoader extends Loader {
           moment(b[10], "YYYY-MM-DD HH:mm:ss")
         );
       })
+      .filter((raw) => {
+        return raw[6] !== "交易关闭";
+      })
       .map(this.rawToRecord);
     return this.groupRecords(data);
   }
 }
+
